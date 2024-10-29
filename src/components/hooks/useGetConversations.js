@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
+const apiUrl = import.meta.env.VITE_API_URL;
 export const useGetConversations = () => {
     const [loading, setLoading] = useState(false);
     const [conversations, setConversations] = useState([]);
-    const apiUrl = import.meta.env.VITE_API_URL;
     useEffect(() => {
         const getConversations = async () => {
             setLoading(true);
