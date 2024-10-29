@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast';
 export const useLogin = () => {
     const [loading, setLoading] = useState(false);
     const {setAuthUser}=useAuthContext();
+    const apiUrl = import.meta.env.VITE_API_URL;
     const handleInputError = (data) => {
         if (!data.username || !data.password) {
             toast.error("All fields are required");
@@ -18,7 +19,7 @@ export const useLogin = () => {
         setLoading(true);
 
         try {
-            const response = await fetch("/api/auth/login",{
+            const response = await fetch(`${apiUrl}/api/auth/login`,{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

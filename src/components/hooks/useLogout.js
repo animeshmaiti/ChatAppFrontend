@@ -5,11 +5,12 @@ import { useAuthContext } from "../context/AuthContext";
 export const useLogout = () => {
     const [loading,setLoading] = useState(false);
     const {setAuthUser} = useAuthContext();
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     const logout = async () => {
         setLoading(true);
         try {
-            const response = await fetch("/api/auth/logout",{
+            const response = await fetch(`${apiUrl}/api/auth/logout`,{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
