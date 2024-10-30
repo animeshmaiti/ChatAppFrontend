@@ -9,7 +9,9 @@ export const useGetConversations = () => {
         const getConversations = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`${apiUrl}/api/users/conversations`);
+                const response = await fetch(`${apiUrl}/api/users/conversations`,{
+                    credentials: "include" // Include cookies for authentication
+                });
                 const data = await response.json();
                 if (!response.ok) {
                     throw new Error(data.error);
@@ -34,7 +36,9 @@ export const useGetAllUsers = () => {
         const getUsers = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`${apiUrl}/api/users`);
+                const response = await fetch(`${apiUrl}/api/users`,{
+                    credentials: "include" // Include cookies for authentication
+                });
                 const data = await response.json();
                 if (!response.ok) {
                     throw new Error(data.error);

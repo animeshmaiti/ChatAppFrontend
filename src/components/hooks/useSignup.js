@@ -4,7 +4,7 @@ import { useAuthContext } from "../context/AuthContext";
 
 export const useSignup = () => {
     const [loading, setLoading] = useState(false);
-    const {setAuthUser}=useAuthContext();
+    const { setAuthUser } = useAuthContext();
     const apiUrl = import.meta.env.VITE_API_URL;
     const signup = async (inputData) => {
         const success = handleInputError(inputData);
@@ -13,11 +13,12 @@ export const useSignup = () => {
         setLoading(true);
 
         try {
-            const response = await fetch(`${apiUrl}/api/auth/signup`,{
+            const response = await fetch(`${apiUrl}/api/auth/signup`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
+                credentials: "include",// Include cookies for authentication
                 body: JSON.stringify(inputData),
             });
             const data = await response.json();
@@ -35,10 +36,10 @@ export const useSignup = () => {
         }
     };
 
-    return {loading, signup};
+    return { loading, signup };
 }
 
-function handleInputError(data){
+function handleInputError(data) {
     if (!data.fullName || !data.username || !data.password || !data.gender) {
         toast.error("All fields are required");
         return false;

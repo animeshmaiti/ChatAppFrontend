@@ -9,7 +9,9 @@ export const useGetMessages = () => {
     const getMessages = async () => {
         setLoading(true);
         try {
-            const response = await fetch(`${apiUrl}/api/messages/${selectedConversation._id}`);
+            const response = await fetch(`${apiUrl}/api/messages/${selectedConversation._id}`,{
+                credentials: "include" // Include cookies for authentication
+            });
             const data = await response.json();
             if (!response.ok) {
                 throw new Error(data.error);

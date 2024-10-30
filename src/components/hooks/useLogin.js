@@ -24,6 +24,7 @@ export const useLogin = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
+                credentials: "include",
                 body: JSON.stringify(inputData),
             });
             const data = await response.json();
